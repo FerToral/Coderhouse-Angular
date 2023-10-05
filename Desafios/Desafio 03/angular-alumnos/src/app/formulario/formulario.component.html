@@ -1,1 +1,29 @@
-<p>formulario works!</p>
+<h1>Formulario con validaciones personalizadas</h1>
+
+<form [formGroup]="form">
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control" id="nombre" formControlName="nombre">
+    <div *ngIf="form.get('nombre').errors">
+      <ul>
+        <li *ngFor="let error of form.get('nombre').errors">
+          {{ error.message }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="correo">Correo electrónico</label>
+    <input type="email" class="form-control" id="correo" formControlName="correo">
+    <div *ngIf="form.get('correo').errors">
+      <ul>
+        <li *ngFor="let error of form.get('correo').errors">
+          {{ error.message }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
