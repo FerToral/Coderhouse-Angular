@@ -1,22 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.scss']
 })
-export class FormularioComponent implements OnInit {
+export class FormularioComponent {
 
-  form: FormGroup;
+  userForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder){
+    this.userForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      lastname: ['', [Validators.required, Validators.minLength(2)]],
 
-  ngOnInit() {
-    this.form = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(5)]],
-      correo: ['', Validators.required, Validators.email]
+      email: ['', [Validators.required, Validators.email]],
+      password: this.formBuilder.control(''),
     });
+  }
+
+
+  get nameControl() {
+    return this.userForm.controls['name'];
+  }
+
+  get emailControl() {
+    return this.userForm.controls['email'];
   }
 
 }
