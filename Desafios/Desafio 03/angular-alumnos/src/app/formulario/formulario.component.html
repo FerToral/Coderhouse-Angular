@@ -1,51 +1,62 @@
 <h1>Formulario con validaciones personalizadas</h1>
 
-<form [formGroup]="userForm" (ngSubmit)="submit()" class="m-3 col-lg-6">
-  <div class="form-group">
-    <label for="name">Nombre</label>
-    <input type="text" class="form-control" id="name" formControlName="name">
+<form [formGroup]="userForm" class="row g-3 needs-validation">
 
-    <div>
+    <div class="col-md-6">
+
+      <label for="name">Nombre</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+
+        <div class="invalid-feedback">
+          <ng-container *ngIf="nameControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+          <ng-container *ngIf="nameControl.errors?.['minLength']">
+            El valor ingresado no es un nombre valido
+          </ng-container>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+      <label for="lastName">Apellido</label>
+      <input type="text" class="form-control" id="lastName" formControlName="lastName">
       <div class="invalid-feedback">
-        <ng-container *ngIf="nameControl.errors?.['required']">
+          <ng-container *ngIf="nameControl.errors?.['required']">
+            Este campo es requerido
+          </ng-container>
+          <ng-container *ngIf="nameControl.errors?.['minLength']">
+            El valor ingresado no es un apellido valido
+          </ng-container>
+        </div>
+      </div> 
+
+    <div class="col-md-12 mb-3">
+      <label for="email">Correo electrónico</label>
+      <input type="text" class="form-control" id="email" formControlName="email" value="email@xanple.com">
+      <div class="invalid-feedback mb-3">
+        <ng-container *ngIf="emailControl.errors?.['required']">
           Este campo es requerido
         </ng-container>
-        <ng-container *ngIf="nameControl.errors?.['minLength']">
-          El valor ingresado no es un nombre valido
+        <ng-container *ngIf="emailControl.errors?.['email']">
+          El valor ingresado no es un email valido
         </ng-container>
       </div>
     </div>
-   
+
+    <div class="col-md-12 mb-3">
+      <label for="email">Password</label>
+      <input type="password" class="form-control" id="inputPassword" formControlName="password">
+      
+    </div>
     
-  </div>
+    <div class="col-12"></div>
 
-  <div class="form-group">
-    <label for="lastname">Apellido</label>
-    <input type="text" class="form-control" id="lastname" formControlName="lastname">
-    <div>
-      <div class="invalid-feedback">
-        <ng-container *ngIf="nameControl.errors?.['required']">
-          Este campo es requerido
-        </ng-container>
-        <ng-container *ngIf="nameControl.errors?.['minLength']">
-          El valor ingresado no es un apellido valido
-        </ng-container>
-      </div>
-    </div>
-  </div>
+  <button
+    [disabled]="userForm.invalid"
+    (click)="onSubmit()"
+    class="btn btn-primary"
+    type="button"
+  >Enviar</button>
 
-  <div class="form-group">
-    <label for="correo">Correo electrónico</label>
-    <input type="email" class="form-control" id="correo" formControlName="correo">
-    <div class="invalid-feedback">
-      <ng-container *ngIf="emailControl.errors?.['required']">
-        Este campo es requerido
-      </ng-container>
-      <ng-container *ngIf="emailControl.errors?.['email']">
-        El valor ingresado no es un email valido
-      </ng-container>
-    </div>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
