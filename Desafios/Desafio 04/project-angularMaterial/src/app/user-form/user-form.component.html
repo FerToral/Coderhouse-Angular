@@ -1,0 +1,55 @@
+<h1>Formulario con validaciones personalizadas</h1>
+
+
+<div class="container">
+    <form [formGroup]="userForm" class="row g-3 needs-validation">
+
+        <div class="col-md-6">
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" required minLength="2">
+                <mat-error *ngIf="nameControl.errors?.['required']">Este campo es requerido</mat-error>
+                <mat-error *ngIf="nameControl.errors?.['minLength']">El valor ingresado no es un nombre valido</mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="col-md-6">
+            <mat-form-field>
+                <mat-label>Apellido</mat-label>
+                <input matInput formControlName="lastName" required minLength="2">
+                <mat-error *ngIf="nameControl.errors?.['required']">Este campo es requerido</mat-error>
+                <mat-error *ngIf="nameControl.errors?.['minLength']">El valor ingresado no es un apellido valido</mat-error>
+            </mat-form-field>
+        </div> 
+       
+        <div class="col-md-12 mb-3">
+            <mat-form-field>
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput formControlName="email" required type="email"  value="email@xanple.com">
+                <mat-error *ngIf="emailControl.errors?.['required']">Este campo es requerido</mat-error>
+                <mat-error *ngIf="emailControl.errors?.['email']">El valor ingresado no es un email valido</mat-error>
+              </mat-form-field>
+            
+        </div>
+    
+        <div class="col-md-12 mb-3">
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" required type="password">
+            </mat-form-field>
+        </div>
+        
+        <div class="col-12">
+            <button
+                [disabled]="userForm.invalid"
+                (click)="onSubmit()"
+                class="btn btn-primary"
+                type="button"
+            >Enviar</button>
+        </div>
+    
+      
+    
+    </form>
+    
+</div>
