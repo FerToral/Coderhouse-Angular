@@ -1,0 +1,33 @@
+<!-- CONTENEDOR -->
+<mat-drawer-container class="example-container" autosize>
+  <!-- SIDEBAR -->
+  <mat-drawer
+    style="width: 200px"
+    [opened]="showSidebar"
+    #drawer
+    class="example-sidenav"
+    mode="side"
+    position="start"
+  >
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <!-- SIDEBAR -->
+
+  <!-- CONTENIDO -->
+  <div class="example-sidenav-content">
+    <!-- TOOLBAR -->
+    <app-toolbar (toggleSidebar)="showSidebar = !showSidebar"></app-toolbar>
+
+    <!-- <app-icons></app-icons> -->
+    <main style="padding: 1rem">
+      <h1 [fontWeight]="'bolder'" appHeadline>Usuarios</h1>
+      <!-- PAGINA -->
+      <!-- <app-forms></app-forms> -->
+      <app-users></app-users>
+
+      <!-- <button (click)="showHome = !showHome">Mostrar home</button> -->
+      <!-- <app-home *ngIf="showHome"></app-home> -->
+    </main>
+  </div>
+  <!-- CONTENIDO -->
+</mat-drawer-container>
